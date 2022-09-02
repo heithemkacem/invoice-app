@@ -1,5 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700&display=swap");
+/* ======= google fonts ============= */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
+/* ======== css variables ========= */
 :root {
   --primary-color: #7c5dfa;
   --secondary-color: #1e2139;
@@ -13,7 +15,8 @@
   --delete-btn-bg: #ec5757;
   --edit-btn-bg: #252945;
 }
-/* Main Css */
+
+/* ======== base style ============ */
 * {
   padding: 0;
   margin: 0;
@@ -22,9 +25,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: var(--body-bg);
-  color: #fff;
+  background: var(--body-bg);
 }
 
 a {
@@ -89,8 +90,7 @@ p {
   color: var(--pending-status-color);
 }
 
-/* SideBar */
-
+/* ========== sidebar css ========== */
 .sidebar {
   width: 120px;
   height: 100vh;
@@ -123,13 +123,14 @@ p {
 
 .sidebar__bottom {
   background: var(--secondary-color) !important;
+  border-top: 1px solid var(--primary-color);
 }
 
 .sidebar__bottom img {
   border-radius: 50%;
 }
 
-/*  home page style start  */
+/* =========== home page style start =========== */
 .invoice__header {
   display: flex;
   align-items: center;
@@ -163,7 +164,8 @@ p {
   padding-bottom: 200px !important;
 }
 
-/*  invoice details style start */
+/* =========== home page style end =========== */
+/* =========== invoice details style start========= */
 .back__btn {
   margin-bottom: 1.9rem;
 }
@@ -278,7 +280,8 @@ p {
   justify-content: space-between;
 }
 
-/*  add new page style start  */
+/* =========== invoice details style end========= */
+/* =========== add new page style start ======== */
 .new__invoice {
   width: 60%;
   margin: auto;
@@ -363,7 +366,7 @@ p {
   margin-top: 100px;
 }
 
-/*  add new page style end  */
+/* =========== add new page style end ======== */
 
 .disable {
   cursor: none;
@@ -371,7 +374,7 @@ p {
   opacity: 50%;
 }
 
-/*  modal style  */
+/* ============== modal style ============ */
 .delete__modal {
   background: rgba(9, 10, 17, 0.76);
   position: fixed;

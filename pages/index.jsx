@@ -1,6 +1,43 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+const url =
+  "mongodb+srv://heithemkacem:yMlJPDZetw7WAsgU@cluster0.okjmu.mongodb.net/invoices?retryWrites=true&w=majority";
+
+export async function getStaticProps() {
+  const client = await MongoClient.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const db = client.db();
+  const invoicesCollection = db.collection("invoices");
+  const invoices = await invoicesCollection.find().toArray();
+  client.close();
+  return {
+    props: {
+      invoices: invoices.map((invoice) => ({
+        id: invoice._id.toString(),
+        senderStreet: invoice.senderStreet,
+        senderCity: invoice.senderCity,
+        senderPostal: invoice.senderPostal,
+        senderCountry: invoice.senderCountry,
+        clientName: invoice.clientName,
+        clientEmail: invoice.clientEmail,
+        clientStreet: invoice.clientStreet,
+        clientCity: invoice.clientCity,
+        clientPostal: invoice.clientPostal,
+        clientCountry: invoice.clientCountry,
+        createdAt: invoice.createdAt,
+        paymentTerms: invoice.paymentTerms,
+        description: invoice.description,
+        status: invoice.status,
+        items: invoice.items,
+        totalAmount: invoice.totalAmount,
+      })),
+    },
+    revalidate: 1,
+  };
+}
 const Home = () => {
   const router = useRouter();
   const navigatePage = () => {
@@ -33,7 +70,7 @@ const Home = () => {
               <h3 className="invoice__total">128785</h3>
             </div>
             <div>
-              <button>Pending</button>
+              <button className="pending__status">Pending</button>
             </div>
           </div>
         </Link>
